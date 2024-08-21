@@ -7,8 +7,9 @@ import g2o
 def add_ones(x):
     return np.concatenate([x, np.ones((x.shape[0], 1))], axis=1)
 
+
 def extractPose(F):
-    W = np.mat([[0, -1, 0], [1, 0, 0], [0, 0, 1]])
+    W = np.array([[0, -1, 0], [1, 0, 0], [0, 0, 1]]) 
     U, d, Vt = np.linalg.svd(F)
     assert np.linalg.det(U) > 0
     if np.linalg.det(Vt) < 0:
@@ -22,6 +23,7 @@ def extractPose(F):
     ret[:3, 3] = t
     print(d)
     return ret
+
 
 def extract(img):
     orb = cv2.ORB_create()
@@ -65,8 +67,9 @@ class Frame(object):
     def __init__(self, mapp, img, K):
         self.K = K
         self.Kinv = np.linalg.inv(self.K)
-        self.pose = IRt
+        self.pose = np.eye(4)  
         self.id = len(mapp.frames)
         mapp.frames.append(self)
         pts, self.des = extract(img)
         self.pts = normalize(self.Kinv, pts)
+

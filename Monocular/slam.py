@@ -61,7 +61,7 @@ def process_frame(img):
     mapp.display()
  
 if __name__== "__main__":
-    cap = cv2.VideoCapture("./tenny-SLAM/Monocular/dashcamvid.mp4")
+    cap = cv2.VideoCapture("/Users/aryanrajpurohit/stream/tenny-SLAM/Monocular/dashcamvid.mp4")
  
     while cap.isOpened():
         ret, frame = cap.read()
